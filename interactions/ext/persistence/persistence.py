@@ -5,7 +5,9 @@ import logging
 from types import MethodType
 from typing import Callable, Dict, Tuple, Union
 
-from interactions import Extension, CommandContext, ComponentContext, extension_listener
+from interactions.models.internal.extension import Extension
+from interactions.models.internal.context import SlashContext, ComponentContext
+from interactions import listen
 
 from .cipher import Cipher
 from .client import persistent_component, persistent_modal
@@ -72,7 +74,7 @@ class Persistence(Extension):
 
         return inner
 
-    @extension_listener
+    @listen
     async def on_component(self, ctx: ComponentContext):
         """The on_component listener. This is called when a component is used."""
         if not any((
