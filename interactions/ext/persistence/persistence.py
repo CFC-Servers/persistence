@@ -94,7 +94,7 @@ class Persistence(Extension):
             else:
                 await self._component_callbacks[pid.tag](ctx, pid.package)
 
-    @extension_listener
+    @listen
     async def on_modal(self, ctx: CommandContext):
         """The on_modal listener. This is called when a modal is submitted."""
         if not any((
